@@ -25,7 +25,7 @@ router.get('/:id', checkId, async (req, res, next) => {
 router.post('/', checkPayload, async (req, res, next) => {
   try {
     const data = await Shipper.create(req.body)
-    res.json(data)
+    res.status(201).json(data)
   } catch (err) {
     next(err)
   }

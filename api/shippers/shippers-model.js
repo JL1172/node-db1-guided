@@ -17,14 +17,17 @@ async function get() {
 
 async function getById(shipperid) {
   /*select * from shippers where shipperid = 1*/
-  const [shipper] = await db("shippers")
-  .where({shipperid : shipperid});
-  return shipper;
+  const res = await db("shippers")
+  .where({shipperid : shipperid}).first();
+  return res;
 }
 
-async function create() {
+async function create(shipper) {
   /*insert into shippers (phone,shippername) values ('2324','arnold') */
-  return 'create wired'
+  const res = await db("shippers")
+  .insert(shipper);
+  const result = await getById(res);
+  return result;
 }
 
 async function update() {
