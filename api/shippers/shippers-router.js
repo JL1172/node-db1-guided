@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', checkId, async (req, res, next) => {
   try {
     const data = await Shipper.getById(req.params.id)
-    res.json(data)
+    res.status(200).json(data)
   } catch (err) {
     next(err)
   }
