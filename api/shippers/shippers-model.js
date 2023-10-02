@@ -10,7 +10,7 @@ module.exports = {
 
 async function get() {
   // const res = await db.raw("select * from shippers");
-  const res = await db('shippers')
+  const res =  db('shippers').orderBy('shippername', "asc")
   // .select('shippername','phone')
   return res;
 }
@@ -30,12 +30,17 @@ async function create(shipper) {
   return result;
 }
 
-async function update() {
+async function update(shipperid,shipper) {
   /*update shippers set phone = 123, shippername = 'asdfsarnold' where shipperid = 1 */
-  return 'update wired'
+ const res = await db("shippers")
+ .update(shipper).where("shipperid", shipperid);
+ const final = await db("shippers").where({shipperid : shipperid}).first();
+ return final;
 }
 
-async function remove() {
+async function remove(shipperid) {
   // delete from shippers where shipperid = 1
-  return 'delete wired'
+  const res = await db("shippers").delete("shipper").where({shipperid : shipperid});
+  const res2 = await db("shippers");
+  return res2;
 }
