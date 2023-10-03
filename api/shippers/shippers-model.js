@@ -40,7 +40,7 @@ async function update(shipperid,shipper) {
 
 async function remove(shipperid) {
   // delete from shippers where shipperid = 1
-  const res = await db("shippers").delete("shipper").where({shipperid : shipperid});
+  const res = await db("shippers").delete().where({shipperid : shipperid});
   const res2 = await db("shippers");
   return res2;
 }
